@@ -22,25 +22,19 @@ public class ClientService {
     }
 
     public void addClient(Client c) {
-        System.out.println("fr.utbm.schoolmaven.coreboot.service.ClientService.addClient()");
-        System.out.println(c);
         this.clientRepository.save(c);
     }
 
-    public void updateClient(int id, String email) {
-       Optional<Client> client =  this.clientRepository.findById(id);
-        if(client.isPresent()){
-            Client c = client.get();
-            c.setEmail("abdelsaroukou@gmail.com");
-            clientRepository.save(c);
-        };
+    public Client findClient(int id) {
+        return this.clientRepository.findById(id).get();
     }
-//
-//    public Client findClient(Integer id) {
-//        return this.clientRepository.findClient(id);
-//    }
-//
-//    public void deleteClient(Integer id) {
-//        this.clientRepository.deleteClient(id);
-//    }
+
+    public void updateClient(Client c) {
+        this.clientRepository.save(c);
+    }
+
+    public void deleteClient(int id) {
+        this.clientRepository.deleteById(id);
+    }
+
 }
