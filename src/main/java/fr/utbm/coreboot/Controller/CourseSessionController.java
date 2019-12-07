@@ -64,13 +64,13 @@ public class CourseSessionController {
     @RequestMapping(value="/cours/session/{id}", method=RequestMethod.GET)    
     public String displaySessionbyId(@PathVariable int id,Model model){
         
-        model.addAttribute("session", session.findCourseSessionClientById(id));
+        model.addAttribute("session", session.findCourseSessionById(id));
         return "coursSession";
     }
     
     @RequestMapping(value="/cours/session/{id}/inscription", method=RequestMethod.GET)
     public String displaySessionbyiIdInscription(@PathVariable int id,Model model){
-        CourseSession csession = session.findCourseSessionClientById(id);
+        CourseSession csession = session.findCourseSessionById(id);
         model.addAttribute("session", csession);
         
         Client client = new Client();

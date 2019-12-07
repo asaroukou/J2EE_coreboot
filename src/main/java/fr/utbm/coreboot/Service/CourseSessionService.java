@@ -27,7 +27,7 @@ public class CourseSessionService {
         this.courseSessionRepository.save(cs);
     }
 
-    public CourseSession findCourseSessionClientById(int id) {
+    public CourseSession findCourseSessionById(int id) {
         return this.courseSessionRepository.findById(id).get();
     }
 
