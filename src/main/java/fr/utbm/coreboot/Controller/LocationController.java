@@ -1,6 +1,6 @@
-package fr.utbm.schoolmaven.coreboot.controller;
+package fr.utbm.coreboot.Controller;
 
-import fr.utbm.schoolmaven.coreboot.service.LocationService;
+import fr.utbm.coreboot.Service.LocationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

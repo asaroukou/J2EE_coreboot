@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.schoolmaven.coreboot.controller;
+package fr.utbm.coreboot.Controller;
 
-import fr.utbm.schoolmaven.coreboot.entity.Course;
-import fr.utbm.schoolmaven.coreboot.entity.CourseSession;
-import fr.utbm.schoolmaven.coreboot.entity.Location;
-import fr.utbm.schoolmaven.coreboot.service.CourseService;
-import fr.utbm.schoolmaven.coreboot.service.CourseSessionService;
-import fr.utbm.schoolmaven.coreboot.service.LocationService;
+import fr.utbm.coreboot.Entity.Course;
+import fr.utbm.coreboot.Entity.CourseSession;
+import fr.utbm.coreboot.Entity.Location;
+import fr.utbm.coreboot.Service.CourseService;
+import fr.utbm.coreboot.Service.CourseSessionService;
+import fr.utbm.coreboot.Service.LocationService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.mapping.Collection;
@@ -54,7 +54,8 @@ public class CourseController {
         List<Course> courses = null;
 
         if (title != null) {
-            courses = course.showCoursesByName(title);
+            //courses = course.showCoursesByName(title);
+            //courses = course.findCourse(title);
         }
 
         model.addAttribute("courses", courses);

@@ -34,10 +34,14 @@ public class MainController {
     @PostMapping(path="/update") // Map ONLY POST Requests
     public @ResponseBody String updateClient (@RequestParam int id
             , @RequestParam String email) {
+        Client c = new Client();
+        c.setId(id);
+        c.setEmail(email);
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        clientService.updateClient(id, email);
+        //clientService.updateClient(id, email);
+        clientService.updateClient(c);
         return "Saved";
     }
 

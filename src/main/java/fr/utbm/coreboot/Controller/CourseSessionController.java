@@ -1,10 +1,10 @@
-package fr.utbm.schoolmaven.coreboot.controller;
+package fr.utbm.coreboot.Controller;
 
-import fr.utbm.schoolmaven.coreboot.entity.Client;
-import fr.utbm.schoolmaven.coreboot.entity.Course;
-import fr.utbm.schoolmaven.coreboot.entity.CourseSession;
-import fr.utbm.schoolmaven.coreboot.service.CourseSessionService;
-import fr.utbm.schoolmaven.coreboot.service.LocationService;
+import fr.utbm.coreboot.Entity.Client;
+import fr.utbm.coreboot.Entity.Course;
+import fr.utbm.coreboot.Entity.CourseSession;
+import fr.utbm.coreboot.Service.CourseSessionService;
+import fr.utbm.coreboot.Service.LocationService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,34 +43,34 @@ public class CourseSessionController {
       return "sessionDisplay";
     }
     
-    @RequestMapping(value="/session/filter")
-    public String displaySessionFilter(HttpServletRequest req, Model model) throws ParseException{
-     
-        //filter list 
-        String title = req.getParameter("title");
-        String city = req.getParameter("city");
-        String date = req.getParameter("date");
-        
-
-        List<CourseSession> courseSessions = session.getCourseSessionFilter(city, title,date);    //.getCourseSessionByLocationTitle(city, title);    //.getCourseSessionByLocation(city);    //.getCourseSessionByDate(startdate);    //.getSessionFilterbyLocation(session.all(),city);    //.getCourseSessionFilter(city, date, title);
-        
-        model.addAttribute("sessions", courseSessions);
-        
-        model.addAttribute("locations", location.all());    
-        
-      return "sessionDisplay";
-    }
+//    @RequestMapping(value="/session/filter")
+//    public String displaySessionFilter(HttpServletRequest req, Model model) throws ParseException{
+//     
+//        //filter list 
+//        String title = req.getParameter("title");
+//        String city = req.getParameter("city");
+//        String date = req.getParameter("date");
+//        
+//
+//        List<CourseSession> courseSessions = session.getCourseSessionFilter(city, title,date);    //.getCourseSessionByLocationTitle(city, title);    //.getCourseSessionByLocation(city);    //.getCourseSessionByDate(startdate);    //.getSessionFilterbyLocation(session.all(),city);    //.getCourseSessionFilter(city, date, title);
+//        
+//        model.addAttribute("sessions", courseSessions);
+//        
+//        model.addAttribute("locations", location.all());    
+//        
+//      return "sessionDisplay";
+//    }
     
     @RequestMapping(value="/cours/session/{id}", method=RequestMethod.GET)    
     public String displaySessionbyId(@PathVariable int id,Model model){
         
-        model.addAttribute("session", session.findById(id));
+        model.addAttribute("session", session.findCourseSessionClientById(id));
         return "coursSession";
     }
     
     @RequestMapping(value="/cours/session/{id}/inscription", method=RequestMethod.GET)
     public String displaySessionbyiIdInscription(@PathVariable int id,Model model){
-        CourseSession csession = session.findById(id);
+        CourseSession csession = session.findCourseSessionClientById(id);
         model.addAttribute("session", csession);
         
         Client client = new Client();
