@@ -7,14 +7,13 @@ package fr.utbm.coreboot.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 //import org.hibernate.annotations.CascadeType;
 
 
 @Entity
-@Table(name = "COURSE_SESSION")
-public class CourseSession implements Serializable {
+@Table(name = "SESSION")
+public class Session implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +39,11 @@ public class CourseSession implements Serializable {
     @JoinColumn(name="LOCATION_ID")
     private Location location;
 
-    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST})
     @JoinTable(
-        name="INCLUDE",
-        joinColumns=@JoinColumn(name="IDSESSION"),
-        inverseJoinColumns=@JoinColumn(name="IDCLIENT")
+        name="SESSION_CLIENT",
+        joinColumns=@JoinColumn(name="SESSION_ID"),
+        inverseJoinColumns=@JoinColumn(name="CLIENT_ID")
     )
     private List<Client> clients;
     
@@ -62,14 +61,15 @@ public class CourseSession implements Serializable {
     }
     
     public void removeClient(Client c){
-            clients.remove(c);
+            clients.removeIf(client -> client.getId() == c.getId());
             c.getSessions().remove(this);
    }
     
-    public CourseSession() {
+    public Session() {
+        clients = new ArrayList<>();
     }
 
-    public CourseSession(int id, Date startDate, Date endDate, int max) {
+    public Session(int id, Date startDate, Date endDate, int max) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -108,19 +108,19 @@ public class CourseSession implements Serializable {
         this.max = max;
     }
 
-    public Course getCode() {
+    public Course getCourse() {
         return course;
     }
 
-    public void setCode(Course course) {
+    public void setCourse(Course course) {
         this.course = course;
     }
 
-    public Location getLocationId() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocationId(Location location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 

@@ -18,7 +18,7 @@ public class Course implements Serializable {
     private String title;
 
     @OneToMany(mappedBy = "course")
-    private List<CourseSession> sessions;
+    private List<Session> sessions;
     
     public Course() {
         this.sessions = new ArrayList<>();
@@ -51,11 +51,11 @@ public class Course implements Serializable {
         return "Course{" + "code=" + code + ", title=" + title + '}';
     }
     
-     public List<CourseSession> getSessions() {
+     public List<Session> getSessions() {
         return sessions;
     }
 
-    public void setSessions(List<CourseSession> sessions) {
+    public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
     }
 

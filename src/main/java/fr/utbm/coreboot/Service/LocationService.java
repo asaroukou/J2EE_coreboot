@@ -19,8 +19,8 @@ public class LocationService {
         return (List<Location>) locationRepository.findAll();
     }
 
-    public void addLocation(Location l) {
-        this.locationRepository.save(l);
+    public Location addLocation(Location l) {
+        return this.locationRepository.save(l);
     }
 
     public Location findLocationById(int id) {

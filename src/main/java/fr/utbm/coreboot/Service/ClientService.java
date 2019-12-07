@@ -21,16 +21,16 @@ public class ClientService {
         return (List<Client>) clientRepository.findAll();
     }
 
-    public void addClient(Client c) {
-        this.clientRepository.save(c);
+    public Client addClient(Client c) {
+        return this.clientRepository.save(c);
     }
 
     public Client findClient(int id) {
         return this.clientRepository.findById(id).get();
     }
 
-    public void updateClient(Client c) {
-        this.clientRepository.save(c);
+    public Client updateClient(Client c) {
+        return this.clientRepository.save(c);
     }
 
     public void deleteClient(int id) {

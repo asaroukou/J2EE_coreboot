@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name="CLIENT")
-public class Client implements Serializable {
+public class Client extends BasicEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -22,7 +22,7 @@ public class Client implements Serializable {
     @Column(name = "LASTNAME")
     private String lastname;
     
-    @Column(name = "FIRST_NAME")
+    @Column(name = "FIRSTNAME")
     private String firstname;
     
     @Column(name = "ADRESS")
@@ -35,20 +35,27 @@ public class Client implements Serializable {
     @Column(name = "EMAIL")
     private String email;
     
-    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},mappedBy = "clients")
-    private List<CourseSession> sessions;
-    
-    public List<CourseSession> getSessions() {
+    @ManyToMany(fetch=FetchType.EAGER,cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},mappedBy = "clients")
+    private List<Session> sessions;
+
+    public List<Session> getSessions() {
         return sessions;
     }
-    public void setSessions(List<CourseSession> sessions) {
+    public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
     }
-    private int courseSessionId;
 
     public Client() {
         this.sessions = new ArrayList<>();
     }
+
+//    @PreRemove
+//    private void removeGroupsFromUsers() {
+//        System.out.println("helo");
+//        for (Session s : sessions) {
+//            s.getClients().remove(this);
+//        }
+//    }
 
     public Client(int id, String lastname, String firstname, String address, String phone, String email) {
         this.id = id;
@@ -61,7 +68,7 @@ public class Client implements Serializable {
         //this.courseSessionId = courseSessionId;
     }
 
-     public int getId() {
+    public int getId() {
         return id;
     }
 
@@ -109,17 +116,11 @@ public class Client implements Serializable {
         this.email = email;
     }
 
-    /*public int getCourseSessionId() {
-        return courseSessionId;
-    }
 
-    public void setCourseSessionId(int courseSessionId) {
-        this.courseSessionId = courseSessionId;
-    }*/
 
     @Override
     public String toString() {
-        return "Client{" + "id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", address=" + address + ", phone=" + phone + ", email=" + email + ", courseSessionId=" + courseSessionId + '}';
+        return "Client{" + "id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", address=" + address + ", phone=" + phone + ", email=" + email +  '}';
     }
 
     

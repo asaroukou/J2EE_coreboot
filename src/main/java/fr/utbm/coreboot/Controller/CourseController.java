@@ -6,18 +6,15 @@
 package fr.utbm.coreboot.Controller;
 
 import fr.utbm.coreboot.Entity.Course;
-import fr.utbm.coreboot.Entity.CourseSession;
-import fr.utbm.coreboot.Entity.Location;
 import fr.utbm.coreboot.Service.CourseService;
-import fr.utbm.coreboot.Service.CourseSessionService;
+import fr.utbm.coreboot.Service.SessionService;
 import fr.utbm.coreboot.Service.LocationService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import org.hibernate.mapping.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,7 +25,7 @@ public class CourseController {
     private CourseService course;
 
     @Autowired
-    private CourseSessionService session;
+    private SessionService session;
 
     @Autowired
     private LocationService location;

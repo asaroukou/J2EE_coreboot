@@ -23,8 +23,8 @@ public class CourseService {
         return courseRepository.findById(code).get();
     }
 
-    public void addCourse(Course c) {
-        this.courseRepository.save(c);
+    public Course addCourse(Course c) {
+        return this.courseRepository.save(c);
     }
 
     public void updateCourse(Course c) {
