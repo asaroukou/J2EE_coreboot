@@ -75,13 +75,5 @@ extends SpringBootServletInitializer implements CommandLineRunner {
 //			System.out.println(session);
 //		}
 
-//		Session session = sessionService.findSessionById(1);
-//		System.out.println(session.getClients());
-//		session.removeClient(clientService.findClient(1));
-//		System.out.println(session.getClients());
-//		session = sessionService.updateSession(session);
-//		System.out.println(session.getClients());
-//		Client c = clientService.findClient(1);
-//		System.out.println(c.getSessions());
 	}
 }
