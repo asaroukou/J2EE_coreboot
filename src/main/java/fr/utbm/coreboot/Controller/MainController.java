@@ -1,54 +1,86 @@
 package fr.utbm.coreboot.Controller;
-
-
 import fr.utbm.coreboot.Entity.Client;
 import fr.utbm.coreboot.Repository.ClientRepository;
 import fr.utbm.coreboot.Service.ClientService;
+import fr.utbm.coreboot.Service.CourseService;
+import fr.utbm.coreboot.Service.LocationService;
+import fr.utbm.coreboot.Service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller // This means that this class is a Controller
-@RequestMapping(path="/demo") // This means URL's start with /demo (after Application path)
+@RequestMapping("/")
 public class MainController {
-    @Autowired // This means to get the bean called userRepository
-    private ClientService clientService;
 
-    @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewClient (@RequestParam String name
-            , @RequestParam String email) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
+    @Autowired
+    ClientService clientService;
 
-        Client n = new Client();
-        n.setFirstname(name);
-        n.setEmail(email);
-        clientService.addClient(n);
-        return "Saved";
+    @Autowired
+    CourseService courseService;
+
+    @Autowired
+    SessionService sessionService;
+
+    @Autowired
+    LocationService locationService;
+
+    @RequestMapping (value = "/hello")
+    public String hello(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
+        model.addAttribute("clients", clientService.all());
+        return "hello";
     }
 
-    @PostMapping(path="/update") // Map ONLY POST Requests
-    public @ResponseBody String updateClient (@RequestParam int id
-            , @RequestParam String email) {
-        Client c = new Client();
-        c.setId(id);
-        c.setEmail(email);
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-
-        //clientService.updateClient(id, email);
-        clientService.updateClient(c);
-        return "Saved";
+    @RequestMapping(value = "/all-client")
+    public String allClient(Model model) {
+        model.addAttribute("clients", clientService.all());
+        return "all-client";
     }
 
-    @GetMapping(path="/all")
-    public @ResponseBody
-    Iterable<Client> getAllUsers() {
-        // This returns a JSON or XML with the users
-        return clientService.all();
+    @RequestMapping(value = "/add-client")
+    public String addClient() {
+        return "add-client";
     }
+
+
+
+    @RequestMapping(value = "/all-course")
+    public String allCourses(Model model) {
+        model.addAttribute("courses", courseService.all());
+        return "all-course";
+    }
+
+    @RequestMapping(value = "/add-course")
+    public String addCourse() {
+        return "add-course";
+    }
+
+
+
+
+    @RequestMapping(value = "/all-site")
+    public String allSites(Model model) {
+        model.addAttribute("locations", locationService.all());
+        return "all-site";
+    }
+
+    @RequestMapping(value = "/add-site")
+    public String addSite() {
+        return "add-site";
+    }
+    @RequestMapping(value = "/all-session")
+    public String allSessions(Model model) {
+        model.addAttribute("sessions", sessionService.all());
+        return "all-session";
+    }
+
+    @RequestMapping(value = "/add-session")
+    public String addSession() {
+        return "add-session";
+    }
+
 }

@@ -48,7 +48,6 @@ public class ClientController {
             c.setPhone(client.getPhone());
             c.setEmail(client.getEmail());
             return clientService.updateClient(c);
-
     }
 
     @DeleteMapping("/client/{id}")

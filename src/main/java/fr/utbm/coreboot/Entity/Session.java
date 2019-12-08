@@ -5,6 +5,9 @@
  */
 package fr.utbm.coreboot.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -13,6 +16,9 @@ import java.util.*;
 
 @Entity
 @Table(name = "SESSION")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Session implements Serializable {
 
     @Id

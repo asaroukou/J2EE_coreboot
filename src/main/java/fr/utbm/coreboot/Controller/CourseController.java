@@ -30,10 +30,10 @@ public class CourseController {
     @Autowired
     private LocationService location;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String showIndex() {
-        return "redirect:/cours";
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String showIndex() {
+//        return "redirect:/cours";
+//    }
 
     @RequestMapping(value = "/cours", method = RequestMethod.GET)
     public String displayCourse(Model model) {
