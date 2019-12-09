@@ -11,6 +11,7 @@ import fr.utbm.coreboot.Service.SessionService;
 import fr.utbm.coreboot.Service.LocationService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,41 +23,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CourseController {
 
     @Autowired
-    private CourseService course;
+    private CourseService courseService;
 
-    @Autowired
-    private SessionService session;
 
-    @Autowired
-    private LocationService location;
-
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String showIndex() {
-//        return "redirect:/cours";
-//    }
-
-    @RequestMapping(value = "/cours", method = RequestMethod.GET)
-    public String displayCourse(Model model) {
-        model.addAttribute("courses", course.all());
-
-        return "coursDisplay";
+    @RequestMapping(value = "/all-course")
+    public String allCourses(Model model) {
+        model.addAttribute("courses", courseService.all());
+        return "all-course";
     }
 
-    @RequestMapping(value = "/cours/filter")
-    public String displayCourseFilter(HttpServletRequest req, Model model) {
-
-        //filter list 
-        String title = req.getParameter("title");
-
-        List<Course> courses = null;
-
-        if (title != null) {
-            //courses = course.showCoursesByName(title);
-            //courses = course.findCourse(title);
-        }
-
-        model.addAttribute("courses", courses);
-
-        return "coursDisplay";
+    @RequestMapping(value = "/add-course", method = RequestMethod.GET)
+    public String addCourse() {
+        return "add-course";
     }
+
+    @RequestMapping(value = "/add-course", method = RequestMethod.POST)
+    public String addCourseSubmit(HttpServletRequest request, HttpServletResponse response) {
+
+        String code = request.getParameter("code");
+        String title = request.getParameter("title");
+
+        Course course = new Course();
+        course.setCode(code);
+        course.setTitle(title);
+        courseService.addCourse(course);
+        return "redirect:/all-course";
+    }
+
+
 }

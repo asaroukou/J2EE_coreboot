@@ -42,12 +42,24 @@
                     <h2 class="text-info">Créer une session</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-                <form>
-                    <div class="form-group"><label>Code du cours</label><select class="form-control" name="course_code"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
+                <form action="/add-session" method="POST">
+                    <div class="form-group"><label>Code du cours</label>
+                        <select class="form-control" name="course_code">
+<%--                            <optgroup label="This is a group">--%>
+                                <c:forEach var = "i" items="${courses}">
+                                    <option value="${i.getCode()}">${i.getCode()} - ${i.getTitle()}</option>
+                                </c:forEach>
+<%--                            </optgroup>--%>
+                        </select></div>
                     <div
-                        class="form-group"><label>Site</label><select class="form-control" name="location_id"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div>
-            <div
-                class="form-group"><label>Début de session</label><input class="form-control" type="date" name="start_date"></div>
+                        class="form-group"><label>Site</label><select class="form-control" name="location_id">
+<%--                        <optgroup label="This is a group">--%>
+                            <c:forEach var = "i" items="${locations}">
+                                <option value="${i.getId()}">${i.getCity()}</option>
+                            </c:forEach>
+<%--                        </optgroup>--%>
+                    </select></div>
+            <div class="form-group"><label>Début de session</label><input class="form-control" type="date" name="start_date"></div>
                 <div class="form-group"><label>Fin de session</label><input class="form-control" type="date" name="end_date"></div>
                 <div class="form-group"><label>Places disponibles</label><input class="form-control" type="number" name="max"></div>
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Créer session</button></div>

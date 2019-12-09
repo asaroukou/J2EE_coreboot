@@ -29,58 +29,14 @@ public class MainController {
     @Autowired
     LocationService locationService;
 
-    @RequestMapping (value = "/hello")
-    public String hello(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
-        model.addAttribute("clients", clientService.all());
-        return "hello";
-    }
-
-    @RequestMapping(value = "/all-client")
-    public String allClient(Model model) {
-        model.addAttribute("clients", clientService.all());
-        return "all-client";
-    }
-
-    @RequestMapping(value = "/add-client")
-    public String addClient() {
-        return "add-client";
-    }
-
-
-
-    @RequestMapping(value = "/all-course")
-    public String allCourses(Model model) {
-        model.addAttribute("courses", courseService.all());
-        return "all-course";
-    }
-
-    @RequestMapping(value = "/add-course")
-    public String addCourse() {
-        return "add-course";
-    }
 
 
 
 
-    @RequestMapping(value = "/all-site")
-    public String allSites(Model model) {
-        model.addAttribute("locations", locationService.all());
-        return "all-site";
-    }
 
-    @RequestMapping(value = "/add-site")
-    public String addSite() {
-        return "add-site";
-    }
-    @RequestMapping(value = "/all-session")
-    public String allSessions(Model model) {
-        model.addAttribute("sessions", sessionService.all());
-        return "all-session";
-    }
 
-    @RequestMapping(value = "/add-session")
-    public String addSession() {
-        return "add-session";
-    }
+
+
+
 
 }

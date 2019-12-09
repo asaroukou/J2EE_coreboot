@@ -42,8 +42,8 @@
                     <h2 class="text-info">Créer un site de formation</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-                <form>
-                    <div class="form-group"><label>Ville</label><input class="form-control" type="number" name="city"></div>
+                <form action="/add-site" method="POST">
+                    <div class="form-group"><label>Ville</label><input class="form-control" type="text" name="city"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Créer site</button></div>
                 </form>
             </div>

@@ -42,7 +42,7 @@
                     <h2 class="text-info">Créer un cours</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-                <form>
+                <form action="/add-course" method="POST">
                     <div class="form-group"><label>Code</label><input class="form-control" type="text" name="code"></div>
                     <div class="form-group"><label>Titre</label><input class="form-control" type="text" name="title"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Créer cours</button></div>

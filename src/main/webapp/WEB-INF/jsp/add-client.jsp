@@ -1,4 +1,6 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -42,7 +44,7 @@
                     <h2 class="text-info">Créer un client</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-                <form>
+                <form method="post" action='/add-client'>
                     <div class="form-group"><label>Nom</label><input class="form-control" type="text" name="lastname"></div>
                     <div class="form-group"><label>Prénom</label><input class="form-control" type="text" name="firstname"></div>
                     <div class="form-group"><label>Adresse</label><input class="form-control" type="text" name="address"></div>
