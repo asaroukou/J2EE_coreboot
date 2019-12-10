@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Location implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
