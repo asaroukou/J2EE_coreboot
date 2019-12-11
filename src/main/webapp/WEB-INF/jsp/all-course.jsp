@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>About Us - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/smoothproducts.css">
@@ -39,7 +39,44 @@
         <section class="clean-block features">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Liste des cours</h2>
+                    <h2 class="text-info">Cours</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="color: rgb(45,69,91);">
+                        <form action="/search-course" method="POST">
+                            <div class="form-group"><label>Mot clé</label><input class="form-control" type="text" name="code"></div>
+                            <div class="form-group"><button type="submit" class="btn btn-primary" >Filtrer par mot clé</button></div>
+                        </form>
+                    </div>
+                    <div class="col-md-4" style="color: rgb(45,69,91);">
+                        <form action="/search-course" method="POST">
+                            <div class="form-group"><label>Date</label><input class="form-control" type="date" name="date"></div>
+                            <div class="form-group"><button type="submit" class="btn btn-primary" >Filtrer par date</button></div>
+                        </form>
+                    </div>
+                    <div class="col-md-4" style="color: rgb(45,69,91);">
+                        <form action="/search-course" method="POST">
+                            <div class="form-group"><label>Site de formation</label><select class="form-control" name="location_id">
+                                <c:forEach var = "i" items="${locations}">
+                                    <option value="${i.getId()}">${i.getCity()}</option>
+                                </c:forEach>
+                            </select></div>
+                            <div
+                                    class="form-group"><button type="submit" class="btn btn-primary">Filtrer par site</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="block-heading">
+                    <h3 class="text-info">
+                        <c:if test = "${filter == null}">
+                            Tous les cours
+                        </c:if>
+                        <c:if test = "${filter != null}">
+                            Cours: ${filter} <a href="/all-course" style="color:red;">(supprimer filtre)</a>
+                        </c:if>
+                    </h3>
                 </div>
                 <div class="row justify-content-center">
                     <div class="table-responsive">
