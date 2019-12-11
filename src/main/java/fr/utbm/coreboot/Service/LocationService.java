@@ -1,12 +1,12 @@
 package fr.utbm.coreboot.Service;
 
 import fr.utbm.coreboot.Entity.Location;
-
 import fr.utbm.coreboot.Repository.LocationRepository;
-import java.util.List;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Service
@@ -16,7 +16,7 @@ public class LocationService {
     private LocationRepository locationRepository;
 
     public List<Location> all() {
-        return (List<Location>) locationRepository.findAll();
+        return locationRepository.findAll();
     }
 
     public Location addLocation(Location l) {

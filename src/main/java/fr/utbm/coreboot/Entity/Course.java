@@ -1,4 +1,3 @@
-
 package fr.utbm.coreboot.Entity;
 
 import javax.persistence.*;
@@ -7,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="COURSE")
+@Table(name = "COURSE")
 public class Course implements Serializable {
 
     @Id
-    @Column(name = "CODE", nullable=false)
+    @Column(name = "CODE", nullable = false)
     private String code;
-    
+
     @Column(name = "TITLE")
     private String title;
 
     @OneToMany(mappedBy = "course")
     private List<Session> sessions;
-    
+
     public Course() {
         this.sessions = new ArrayList<>();
     }
@@ -50,8 +49,8 @@ public class Course implements Serializable {
     public String toString() {
         return "Course{" + "code=" + code + ", title=" + title + '}';
     }
-    
-     public List<Session> getSessions() {
+
+    public List<Session> getSessions() {
         return sessions;
     }
 

@@ -8,24 +8,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "LOCATION")
 public class Location implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    private int id;
-    
-    public String getCity() {
-        return city;
-    }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+    private int id;
     private String city;
 
     public Location() {
@@ -35,7 +19,25 @@ public class Location implements Serializable {
     public Location(String city) {
         this.city = city;
     }
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return "Location{" + "id=" + id + ", city=" + city + '}';

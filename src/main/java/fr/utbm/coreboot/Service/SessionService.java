@@ -1,13 +1,12 @@
 package fr.utbm.coreboot.Service;
 
 import fr.utbm.coreboot.Entity.Session;
-import org.springframework.stereotype.Service;
 import fr.utbm.coreboot.Repository.CourseSessionRepository;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Service
@@ -17,8 +16,13 @@ public class SessionService {
     private CourseSessionRepository courseSessionRepository;
 
     public List<Session> all() {
-        return (List<Session>) courseSessionRepository.findAll();
+        return courseSessionRepository.findAll();
     }
+
+    public List<Session> allOpen() {
+        return courseSessionRepository.findAllOpenSession();
+    }
+
 
     public Session addSession(Session cs) {
         return this.courseSessionRepository.save(cs);
@@ -27,6 +31,7 @@ public class SessionService {
     public Session findSessionById(int id) {
         return this.courseSessionRepository.findById(id).get();
     }
+
 
     public Session updateSession(Session cs) {
         return this.courseSessionRepository.save(cs);

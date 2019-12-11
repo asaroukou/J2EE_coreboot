@@ -36,5 +36,5 @@ public class LocationController {
         locationService.addLocation(location);
         return "redirect:/all-site";
     }
-    
+
 }

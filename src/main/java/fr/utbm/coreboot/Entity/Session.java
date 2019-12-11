@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 //import org.hibernate.annotations.CascadeType;
 
 
@@ -25,52 +27,34 @@ public class Session implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
-    
-    @Column(name = "START_DATE", nullable=false)
+
+    @Column(name = "START_DATE", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
-    
-    @Column(name = "END_DATE", nullable=false)
+
+    @Column(name = "END_DATE", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDate;
-    
+
     @Column(name = "MAXIMUM")
     private int max;
-    
+
     @ManyToOne
-    @JoinColumn(name="COURSE_CODE")
+    @JoinColumn(name = "COURSE_CODE")
     private Course course;
-    
+
     @ManyToOne
-    @JoinColumn(name="LOCATION_ID")
+    @JoinColumn(name = "LOCATION_ID")
     private Location location;
 
-    @ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinTable(
-        name="SESSION_CLIENT",
-        joinColumns=@JoinColumn(name="SESSION_ID"),
-        inverseJoinColumns=@JoinColumn(name="CLIENT_ID")
+            name = "SESSION_CLIENT",
+            joinColumns = @JoinColumn(name = "SESSION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CLIENT_ID")
     )
     private List<Client> clients;
-    
-    public List<Client> getClients() {
-        return clients;
-    }
 
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-    
-    public void addClient(Client c){
-            clients.add(c);
-            c.getSessions().add(this);
-    }
-    
-    public void removeClient(Client c){
-            clients.removeIf(client -> client.getId() == c.getId());
-            c.getSessions().remove(this);
-   }
-    
     public Session() {
         clients = new ArrayList<>();
     }
@@ -80,6 +64,24 @@ public class Session implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.max = max;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+
+    public void addClient(Client c) {
+        clients.add(c);
+        c.getSessions().add(this);
+    }
+
+    public void removeClient(Client c) {
+        clients.removeIf(client -> client.getId() == c.getId());
+        c.getSessions().remove(this);
     }
 
     public int getId() {
@@ -134,5 +136,5 @@ public class Session implements Serializable {
     public String toString() {
         return "CourseSession{" + "id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", max=" + max + ", code=" + course.getCode() + ", locationId=" + location.getId() + '}';
     }
-    
+
 }

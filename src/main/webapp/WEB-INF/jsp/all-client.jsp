@@ -6,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>About Us - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <title>Liste clients</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/smoothproducts.css">
@@ -15,22 +15,44 @@
 
 <body>
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-    <div class="container"><a class="navbar-brand logo" href="#">LO54-MGR</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><a class="navbar-brand logo" href="#">LO54-MGR</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse"
              id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item" role="presentation"><a class="nav-link active" href="/">accueil</a></li>
-                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown" aria-expanded="/add-course" href="#">Cours</a>
-                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/all-course">Liste</a><a class="dropdown-item" role="presentation" href="/add-course">Ajouter</a></div>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown"
+                                                 aria-expanded="/add-course" href="#">Cours</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                                                              href="/all-course">Liste</a><a class="dropdown-item"
+                                                                                             role="presentation"
+                                                                                             href="/add-course">Ajouter</a>
+                    </div>
                 </li>
-                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown" aria-expanded="false" href="/add-session">Sessions</a>
-                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/all-session">Liste</a><a class="dropdown-item" role="presentation" href="/add-session">Ajouter</a></div>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown"
+                                                 aria-expanded="false" href="/add-session">Sessions</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                                                              href="/all-session">Liste</a><a class="dropdown-item"
+                                                                                              role="presentation"
+                                                                                              href="/add-session">Ajouter</a>
+                    </div>
                 </li>
-                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown" aria-expanded="false" href="/add-site">sites</a>
-                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/all-site">Liste</a><a class="dropdown-item" role="presentation" href="/add-site">Ajouter</a></div>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown"
+                                                 aria-expanded="false" href="/add-site">sites</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                                                              href="/all-site">Liste</a><a class="dropdown-item"
+                                                                                           role="presentation"
+                                                                                           href="/add-site">Ajouter</a>
+                    </div>
                 </li>
-                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown" aria-expanded="false" href="/add-client">client</a>
-                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/all-client">Liste</a><a class="dropdown-item" role="presentation" href="/add-client">Ajouter</a></div>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link text-body" data-toggle="dropdown"
+                                                 aria-expanded="false" href="/add-client">client</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                                                              href="/all-client">Liste</a><a class="dropdown-item"
+                                                                                             role="presentation"
+                                                                                             href="/add-client">Ajouter</a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -55,15 +77,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var = "i" items="${clients}">
-                                <tr>
-                                    <td>${i.getLastname()} ${i.getFirstname()}</td>
-                                    <td>${i.getAddress() }</td>
-                                    <td>${i.getPhone() }</td>
-                                    <td>${i.getEmail() }</td>
-                                    <td><a href="#">Consulter</a><span>&nbsp;|&nbsp;</span><a href="/the-client/${i.getId()}">Modifier</a><span>&nbsp;|&nbsp;</span><a href="#">Supprimer</a></td>
-                                </tr>
-                            </c:forEach>
+                        <c:forEach var="i" items="${clients}">
+                            <tr>
+                                <td>${i.getLastname()} ${i.getFirstname()}</td>
+                                <td>${i.getAddress() }</td>
+                                <td>${i.getPhone() }</td>
+                                <td>${i.getEmail() }</td>
+                                <td><a href="#">Consulter</a><span>&nbsp;|&nbsp;</span><a
+                                        href="/the-client/${i.getId()}">Modifier</a><span>&nbsp;|&nbsp;</span><a
+                                        href="#">Supprimer</a></td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
